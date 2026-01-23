@@ -55,6 +55,18 @@ public class PlayerService {
         Player player = new Player(name, avatar, room);
         return playerRepository.save(player);
     }
+//  Create player with name and Room
+    @Transactional
+    public Player createPlayer(String name, Room room) {
+        Player player = new Player();
+        player.setName(name);
+        player.setRoom(room);
+        player.setOnline(true);
+        player.updateLastActive();
+        return playerRepository.save(player);
+
+    }
+
 
     /**
      * Update player's room
